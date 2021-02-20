@@ -250,7 +250,7 @@ class Manager
         }
     }
 
-    public function exportTranslations($group = null, $json = false)
+    public function exportTranslations($group = null, $json = false, $event = false)
     {
         $basePath = $this->app['path.lang'];
 
@@ -319,7 +319,11 @@ class Manager
             Translation::ofTranslatedGroup(self::JSON_GROUP)->update(['status' => Translation::STATUS_SAVED]);
         }
 
-        $this->events->dispatch(new TranslationsExportedEvent());
+        if($event){
+            $this->events->dispatch(new TranslationsExportedEvent());
+        }
+
+
     }
 
     public function exportAllTranslations()

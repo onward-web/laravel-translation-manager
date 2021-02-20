@@ -134,7 +134,7 @@ class Controller extends BaseController
             $json = true;
         }
 
-        $this->manager->exportTranslations($group, $json);
+        $this->manager->exportTranslations($group, $json, true);
 
         return ['status' => 'ok'];
     }
